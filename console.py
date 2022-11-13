@@ -2,6 +2,8 @@
 """ Console Module """
 import cmd
 import os
+import uuid
+import datetime
 import sys
 from models.base_model import BaseModel
 from models.__init__ import storage
@@ -257,11 +259,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)
